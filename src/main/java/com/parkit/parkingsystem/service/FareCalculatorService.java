@@ -12,11 +12,14 @@ public class FareCalculatorService {
 
         long inTime = ticket.getInTime().getTime();
         long outTime = ticket.getOutTime().getTime();
-
         // Calculate the duration in hours
         double duration = (double)(outTime - inTime) / (1000 * 60 * 60);
-
-        switch (ticket.getParkingSpot().getParkingType()){
+        if(duration <= 0.5) {
+        	ticket.setPrice(0);
+        }
+        else
+        {
+        	switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
                 ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
                 break;
@@ -26,6 +29,7 @@ public class FareCalculatorService {
                 break;
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
+        }
         }
     }
 }
