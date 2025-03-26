@@ -86,4 +86,30 @@ public class TicketDAO {
         }
         return false;
     }
+    public int getNbTicket(String vehicleRegNumber) {
+    	Connection con = null;
+    	int nbTicket = 0;
+
+    	try {
+    		con = dataBaseConfig.getConnection();
+    		PreparedStatement ps = con.prepareStatement(DBConstants.COUNT_TICKET);
+    		ps.setString(1, vehicleRegNumber);
+    		ResultSet rs = ps.executeQuery();
+
+    		while(rs.next()) {
+    			nbTicket = rs.getInt(2);
+    			logger.debug("vehicleRegNumber :"+ vehicleRegNumber + "nbTicket :"+ nbTicket);
+    		}
+
+    		dataBaseConfig.closeResultSet(rs);
+    		dataBaseConfig.closePreparedStatement(ps);
+
+    	}catch(Exception ex) {
+    		logger.error("Error fetching vehicle, count not available", ex);
+    	}finally {
+    		dataBaseConfig.closeConnection(con);
+    	}
+    	return nbTicket;
+
+    }
 }

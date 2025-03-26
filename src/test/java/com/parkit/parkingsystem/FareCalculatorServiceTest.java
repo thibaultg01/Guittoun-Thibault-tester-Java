@@ -160,9 +160,10 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
-        //fareCalculatorService.calculateFare(ticket, true);
-        //assertEquals(Fare.CAR_RATE_PER_HOUR * 0.95,ticket.getPrice());
+        fareCalculatorService.calculateFare(ticket, true);
+        assertEquals(Fare.CAR_RATE_PER_HOUR * 0.95,ticket.getPrice());
     }
+    // Test new 04 T11
     @Test
     public void calculateFareBikeWithDiscount(){
         Date inTime = new Date();
@@ -173,7 +174,7 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
-       // fareCalculatorService.calculateFare(ticket, true);
-        //assertEquals(Fare.BIKE_RATE_PER_HOUR * 0.95,ticket.getPrice());
-}
+        fareCalculatorService.calculateFare(ticket, true);
+        assertEquals(Fare.BIKE_RATE_PER_HOUR * 0.95,ticket.getPrice());
+        }
 }
