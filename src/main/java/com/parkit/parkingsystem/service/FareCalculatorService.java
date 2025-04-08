@@ -35,7 +35,7 @@ public class FareCalculatorService {
         if (discount) {
         double Fare = 0;
         Fare += ticket.getPrice();
-        ticket.setPrice(Fare * 0.95);		
+        ticket.setPrice(Fare * 0.95);
         }
     }
 }
